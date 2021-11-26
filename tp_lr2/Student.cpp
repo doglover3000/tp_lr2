@@ -59,3 +59,27 @@ int Student::_scoresSize()
 {
 	return _msize(_scores) / sizeof(int);
 }
+
+bool operator<(Student& l, Student& r)
+{
+	if (l.getAvgScore() < r.getAvgScore())
+		return true;
+	else
+		return false;
+}
+
+bool operator>(Student& l, Student& r)
+{
+	if (l.getAvgScore() > r.getAvgScore())
+		return true;
+	else
+		return false;
+}
+
+bool operator==(Student& l, Student& r)
+{
+	if (l.getAvgScore() == r.getAvgScore())
+		return true;
+	else
+		return false;
+}

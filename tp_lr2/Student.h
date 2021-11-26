@@ -14,10 +14,9 @@ public:
 	int getScore(int i);
 	float getAvgScore();
 
-	/*friend bool operator==(const Student&, const Student&);
-	friend bool operator!=(const Student&, const Student&);
-	friend bool operator<(const Student&, const Student&);
-	friend bool operator>(const Student&, const Student&);*/
+	friend bool operator<(Student& l, Student& r);
+	friend bool operator>(Student& l, Student& r);
+	friend bool operator==(Student& l, Student& r);
 
 private:
 	string _name;
