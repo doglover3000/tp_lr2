@@ -1,21 +1,17 @@
 #include "Student.h"
 
-Student::Student(string& name)
+Student::Student(string& name, string& group)
 {
 	_scores = new int;
 	_scores[0] = 0;
  	_name = name;
+	_group = group;
 }
 
 Student::~Student()
 {
 	_name.~basic_string();
 	delete[] _scores;
-}
-
-void Student::setName(string& name)
-{
-	_name = name;
 }
 
 void Student::setScore(int score)

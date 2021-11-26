@@ -10,8 +10,11 @@ public:
 	~List();
 	int getSize();
 	void add(Student& st);
+	void add_at(int i, Student& st);
 	void remove(int i);
 	void clear();
+	void getInfo(int i);
+
 private:
 	int _size;
 	struct ListItem

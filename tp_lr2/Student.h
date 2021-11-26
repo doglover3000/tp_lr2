@@ -5,10 +5,9 @@ using namespace std;
 class Student
 {
 public:
-	Student(string& name);
+	Student(string& name, string& group);
 	~Student();
 
-	void setName(string& name);
 	void setScore(int score);
 	string getName();
 	int getScore(int i);
@@ -20,6 +19,7 @@ public:
 
 private:
 	string _name;
+	string _group;
 	int* _scores;
 	int _scoresSize();
 };
