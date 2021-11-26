@@ -6,6 +6,7 @@ using namespace std;
 class List
 {
 public:
+	List();
 	List(Student& st);
 	~List();
 	int getSize();
@@ -14,6 +15,7 @@ public:
 	void remove(int i);
 	void clear();
 	void getInfo(int i);
+	bool isHighScore(int i);
 
 private:
 	int _size;

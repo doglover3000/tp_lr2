@@ -6,6 +6,7 @@ Student::Student(string& name, string& group)
 	_scores[0] = 0;
  	_name = name;
 	_group = group;
+	_highscore = true;
 }
 
 Student::~Student()
@@ -17,6 +18,8 @@ Student::~Student()
 void Student::setScore(int score)
 {
 	int* tmp = nullptr;
+	if (score != 4 && score != 5)
+		_highscore = false;
 	if (_scores[0] == 0)
 		_scores[0] = score;
 	else
@@ -31,6 +34,11 @@ void Student::setScore(int score)
 string Student::getName()
 {
 	return _name;
+}
+
+string Student::getGroup()
+{
+	return _group;
 }
 
 int Student::getScore(int i)
@@ -49,6 +57,17 @@ float Student::getAvgScore()
 	for (int i = 0; i < _scoresSize(); i++)
 		tmp += _scores[i];
 	return (float)((float)tmp / (float)_scoresSize());
+}
+
+bool Student::getHighScore()
+{
+	return _highscore;
+}
+
+void Student::printScore()
+{
+	for (int i = 0; i < _scoresSize(); i++)
+		cout << _scores[i] << " ";
 }
 
 int Student::_scoresSize()

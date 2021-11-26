@@ -1,5 +1,11 @@
 #include "ListofStudents.h"
 
+List::List()
+{
+	_size = 0;
+	_first = nullptr;
+}
+
 List::List(Student& st)
 {
 	_first = new ListItem;
@@ -117,5 +123,17 @@ void List::getInfo(int i)
 	ListItem* tmp = _first;
 	for (int j = 0; j < i; j++) 
 		tmp = tmp->_next;
-	cout << tmp->_item->getName() << ", группа: \nСредний балл: " << tmp->_item->getAvgScore() << endl;
+	cout << tmp->_item->getName() << ", группа: " << tmp->_item->getName() << "\nОценки: ";
+	tmp->_item->printScore();
+	cout << "\nСредний балл: " << tmp->_item->getAvgScore() << endl;
+}
+
+bool List::isHighScore(int i)
+{
+	if (i < 0 || i >= _size)
+		throw exception("Неверный индекс!");
+	ListItem* tmp = _first;
+	for (int j = 0; j < i; j++)
+		tmp = tmp->_next;
+	return tmp->_item->getHighScore();
 }
