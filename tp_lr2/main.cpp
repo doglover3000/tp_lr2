@@ -25,9 +25,8 @@ int main()
 			"1 - Вывод информации о студентах\n"
 			"2 - Вывод информации о студентах с оценками только 4 и 5\n"
 			"3 - Добавить студента\n"
-			"4 - Изменить информацию о студенте\n"
-			"5 - Удалить студента\n"
-			"6 - Отчистить базу\n"
+			"4 - Удалить студента\n"
+			"5 - Отчистить базу\n"
 			"0 - Выход\n> ";
 		menu = _getch();
 
@@ -49,13 +48,9 @@ int main()
 			break;
 		case '4':
 			system("cls");
-			EditStudent(list);
-			break;
-		case '5':
-			system("cls");
 			RemoveStudent(list);
 			break;
-		case '6':
+		case '5':
 			system("cls");
 			RemoveAll(list);
 			break;
@@ -68,10 +63,14 @@ int main()
 void Print(List& lst)
 {
 	if (lst.getSize() == 0)
-		throw exception("Список студентов пуст!");
+	{
+		cout << "Список студентов пуст!";
+		_getch();
+		return;
+	}
 	for (int i = 0; i < lst.getSize(); i++)
 	{
-		cout << i << ") ";
+		cout << i+1 << ") ";
 		lst.getInfo(i);
 	}
 	_getch();
@@ -80,15 +79,23 @@ void Print(List& lst)
 void PrintHighScore(List& lst)
 {
 	if (lst.getSize() == 0)
-		throw exception("Список студентов пуст!");
+	{
+		cout << "Список студентов пуст!";
+		_getch();
+		return;
+	}
+	int flag = 0;
 	for (int i = 0; i < lst.getSize(); i++)
 	{
 		if (lst.isHighScore(i))
 		{
 			cout << i << ") ";
 			lst.getInfo(i);
+			flag = 1;
 		}
 	}
+	if (flag == 0)
+		cout << "Таких студентов нет!";
 	_getch();
 }
 
@@ -106,32 +113,16 @@ void AddStudent(List& lst)
 	cout << "Студент успешно добавлен!";
 	_getch();
 
-	int menu, entered, tmp;
-	while (true)
+	int entered, tmp;
+	system("cls");
+	cout << "Введите количество оценок, которые вы хотите добавить: ";
+	cin >> entered;
+	cout << "Вводите оценки по одной:" << endl;
+	for (int i = 0; i < entered; i++)
 	{
-		system("cls");
-		cout << "1 - Ввести оценки студента\n"
-			"0 - Вернуться в меню\n> ";
-		menu = _getch();
-		cout << endl;
-		switch (menu)
-		{
-		default:
-			break;
-		case '1':
-			cout << "Введите количество оценок, которые вы хотите добавить: ";
-			cin >> entered;
-			cout << "Вводите оценки по одной:" << endl;
-			for (int i = 0; i < entered; i++)
-			{
-				cout << i+1 << ") ";
-				cin >> tmp;
-				a->setScore(tmp);
-			}
-			return;
-		case '0':
-			return;
-		}
+		cout << i + 1 << ") ";
+		cin >> tmp;
+		a->setScore(tmp);
 	}
 }
 
@@ -139,7 +130,34 @@ void EditStudent(List& lst)
 {}
 
 void RemoveStudent(List& lst)
-{}
+{
+	if (lst.getSize() == 0)
+	{
+		cout << "Список студентов пуст!";
+		_getch();
+		return;
+	}
+	for (int i = 0; i < lst.getSize(); i++)
+	{
+		cout << i+1 << ") ";
+		lst.getInfo(i);
+	}
+	cout << "Введите номер студента, информацию о котором хотите удалить: ";
+	int entered = _getch();
+	lst.remove(entered-48);
+	system("cls");
+	cout << "Успешно удалено!";
+}
 
 void RemoveAll(List& lst)
-{}
+{
+	if (lst.getSize() == 0)
+	{
+		cout << "Список студентов пуст!";
+		_getch();
+		return;
+	}
+	lst.clear();
+	_getch();
+	cout << "Список успешно очищен!";
+}

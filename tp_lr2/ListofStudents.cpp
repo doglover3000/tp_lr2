@@ -81,7 +81,7 @@ void List::add(Student& st)
 
 void List::remove(int i)
 {
-	if (i < 0 || i >= _size)
+	if (i < 0 || i > _size)
 		throw exception("Неверный индекс!");
 	if (_size == 1)
 	{
